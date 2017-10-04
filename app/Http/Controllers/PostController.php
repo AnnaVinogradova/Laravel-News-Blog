@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PostFormRequest;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class PostController
@@ -19,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(self::POST_PER_PAGE);
-        return view('posts.index', array('posts' => $posts));
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -28,7 +29,31 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('posts.show', array('post' => $post));
+        $post = Post::findOrFail($id);
+        return view('posts.show', ['post' => $post]);
+    }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    /**
+     * @param PostFormRequest $request
+     * @return mixed
+     */
+    public function store(PostFormRequest $request)
+    {
+        $post = new Post();
+        $post->title = $request->title;
+        $post->fullDescription = $request->fullDescription;
+        $post->description = $request->description;
+        $post->image = '';
+        $post->user()->associate(Auth::user());
+
+        $post->save();
+
+        return \Redirect::route('home')
+            ->with('message', 'Post was successfully saved!');
     }
 }

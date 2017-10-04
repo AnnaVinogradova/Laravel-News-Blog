@@ -13,6 +13,8 @@
 
 Route::get('/', 'PostController@index')->name('posts.index');
 Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
+Route::post('/post/store', 'PostController@store')->name('posts.store');
+Route::get('/create', 'PostController@create')->name('posts.create');
 
 Auth::routes();
 

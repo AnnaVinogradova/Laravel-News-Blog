@@ -14,7 +14,7 @@
                         {{ $post->title }}
                     </a>
                 </div>
-                <div class="col-xs-12 post-date">Created {{ $post->created_at }} by</div>
+                <div class="col-xs-12 post-date">Created {{ $post->created_at }} by {{ $post->user->name }}</div>
                 <div class="col-xs-12">
                     <div class="col-md-4">
                         <img src="" alt="">

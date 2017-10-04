@@ -67,3 +67,7 @@ p.page-title {
     margin-top: -90px;
     margin-bottom: 0;
 }
+
+.error-list {
+    color: #d8192f;
+}
