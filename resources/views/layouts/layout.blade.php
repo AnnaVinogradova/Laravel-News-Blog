@@ -9,8 +9,12 @@
     </head>
     <body>
         <div class="container">
-            <a href="" class="menu-link pull-right">Login</a>
-            <a href="{{ route('posts.index') }}" class="menu-link pull-right">Home</a>
+            @if (Auth::guest())
+                <a href="{{ route('login') }}" class="menu-link pull-right">Login</a>
+            @else
+                <a href="{{ route('home') }}" class="menu-link pull-right">Home</a>
+            @endif
+            <a href="{{ route('posts.index') }}" class="menu-link pull-right">Main</a>
         </div>
         @yield('content')
     </body>

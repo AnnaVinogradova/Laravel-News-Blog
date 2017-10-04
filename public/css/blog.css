@@ -60,3 +60,10 @@ p.page-title {
     font-style: italic;
     color: #000;
 }
+
+.admin-page-header {
+    background: rgb(38,85,139);
+    min-height: 100px;
+    margin-top: -90px;
+    margin-bottom: 0;
+}

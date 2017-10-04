@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Page Title')
+@section('title', 'Posts')
 
 @section('content')
     <div class="container page-header">
