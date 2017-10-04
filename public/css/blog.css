@@ -1,0 +1,62 @@
+a.menu-link {
+    margin-top: 30px;
+    margin-right: 50px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: cursive;
+}
+
+.page-header {
+    background: rgb(206,219,233);
+    background: -moz-linear-gradient(-45deg, rgba(206,219,233,1) 0%, rgba(170,197,222,1) 17%, rgba(97,153,199,1) 59%, rgba(58,132,195,1) 62%, rgba(65,154,214,1) 68%, rgba(75,184,240,1) 78%, rgba(58,139,194,1) 90%, rgba(38,85,139,1) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(206,219,233,1) 0%,rgba(170,197,222,1) 17%,rgba(97,153,199,1) 59%,rgba(58,132,195,1) 62%,rgba(65,154,214,1) 68%,rgba(75,184,240,1) 78%,rgba(58,139,194,1) 90%,rgba(38,85,139,1) 100%);
+    background: linear-gradient(135deg, rgba(206,219,233,1) 0%,rgba(170,197,222,1) 17%,rgba(97,153,199,1) 59%,rgba(58,132,195,1) 62%,rgba(65,154,214,1) 68%,rgba(75,184,240,1) 78%,rgba(58,139,194,1) 90%,rgba(38,85,139,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedbe9', endColorstr='#26558b',GradientType=1 );
+    min-height: 250px;
+    margin-top: -90px;
+    margin-bottom: 0;
+}
+
+p.page-title {
+    margin-top: 100px;
+    margin-left: 30%;
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 2px 1px 3px #fff;
+    font-weight: bold;
+    font-family: cursive, sans-serif;
+}
+
+.single-post .page-title {
+    margin: 100px auto;
+    text-align: center;
+}
+
+.post-in-list {
+    border-bottom: 1px solid #E3E3E3;
+    padding: 20px 0;
+}
+
+.page-content {
+    background-color: #fff;
+    padding: 50px;
+}
+
+.post-title a {
+    color: #000;
+    font-weight: bold;
+    font-size: 1.8em;
+    font-family: cursive;
+}
+
+.post-date {
+    color: #adadad;
+    font-style: italic;
+}
+
+.single-post-description {
+    padding: 50px;
+    font-style: italic;
+    color: #000;
+}
