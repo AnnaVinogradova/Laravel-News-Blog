@@ -71,3 +71,7 @@ p.page-title {
 .error-list {
     color: #d8192f;
 }
+
+.delete-form form {
+    display: inline;
+}

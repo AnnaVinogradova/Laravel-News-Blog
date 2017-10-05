@@ -56,4 +56,40 @@ class PostController extends Controller
         return \Redirect::route('home')
             ->with('message', 'Post was successfully saved!');
     }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update($id, PostFormRequest $request)
+    {
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->fullDescription = $request->fullDescription;
+        $post->description = $request->description;
+        $post->image = '';
+
+        $post->save();
+
+        return \Redirect::route('home')
+            ->with('message', 'Post was successfully updated!');
+    }
+
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.delete', ['post' => $post]);
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+
+        $post->delete();
+
+        return \Redirect::route('home')
+            ->with('message', 'Post was successfully updated!');
+    }
 }
