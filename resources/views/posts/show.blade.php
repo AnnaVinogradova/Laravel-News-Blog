@@ -14,8 +14,15 @@
                 <img src="" alt="">
             </div>
         </div>
+        @if(!empty($post->image))
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <img src="{{ asset( \App\Http\Services\PostService::IMAGES_PATH . '/' . $post->image) }}" alt="">
+                </div>
+            </div>
+        @endif
         <div class="row single-post-description">
-            {{ $post->fullDescription }}
+            {!! $post->fullDescription !!}
         </div>
     </div>
 @stop

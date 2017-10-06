@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostFormRequest;
+use App\Http\Services\PostService;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     const POST_PER_PAGE = 5;
+
+    protected $postService;
+
+    /**
+     * PostController constructor.
+     * @param PostService $postService
+     */
+    public function __construct(PostService $postService)
+    {
+        $this->postService = $postService;
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -45,10 +57,7 @@ class PostController extends Controller
     public function store(PostFormRequest $request)
     {
         $post = new Post();
-        $post->title = $request->title;
-        $post->fullDescription = $request->fullDescription;
-        $post->description = $request->description;
-        $post->image = '';
+        $this->postService->fillPost($post, $request);
         $post->user()->associate(Auth::user());
 
         $post->save();
@@ -66,10 +75,7 @@ class PostController extends Controller
     public function update($id, PostFormRequest $request)
     {
         $post = Post::findOrFail($id);
-        $post->title = $request->title;
-        $post->fullDescription = $request->fullDescription;
-        $post->description = $request->description;
-        $post->image = '';
+        $this->postService->fillPost($post, $request);
 
         $post->save();
 

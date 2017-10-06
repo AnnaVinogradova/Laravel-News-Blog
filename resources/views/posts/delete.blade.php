@@ -17,6 +17,6 @@
         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         {!! Form::close() !!}
 
-        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-default">Cancel</a>
+        <a href="{{ route('posts.index') }}" class="btn btn-default">Cancel</a>
     </div>
 @stop

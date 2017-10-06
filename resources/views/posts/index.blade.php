@@ -15,11 +15,21 @@
                     </a>
                 </div>
                 <div class="col-xs-12 post-date">Created {{ $post->created_at }} by {{ $post->user->name }}</div>
-                <div class="col-xs-12">
-                    <div class="col-md-4">
-                        <img src="" alt="">
+                @if (!Auth::guest())
+                    <div class="btn-group pull-right" role="group">
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('posts.delete', $post->id) }}" class="btn btn-danger">Delete</a>
                     </div>
-                    <div class="col-md-8">{{ $post->description }}</div>
+                @endif
+                <div class="col-xs-12">
+                    @if(!empty($post->image))
+                        <div class="col-md-4">
+                            <img src="{{ asset( \App\Http\Services\PostService::IMAGES_PATH . '/' . $post->image) }}" alt="">
+                        </div>
+                        <div class="col-md-8">{{ $post->description }}</div>
+                    @else
+                        {{ $post->description }}
+                    @endif
                 </div>
             </div>
         @endforeach

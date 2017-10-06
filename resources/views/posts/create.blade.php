@@ -19,7 +19,7 @@
         </div>
         @endif
 
-        {!! Form::open(array('route' => 'posts.store', 'class' => 'form')) !!}
+        {!! Form::open(array('route' => 'posts.store', 'class' => 'form', 'enctype' => 'multipart/form-data')) !!}
 
         <div class="form-group">
             {!! Form::label('Post title') !!}
@@ -44,6 +44,10 @@
                     'class'=>'form-control'
                 ]) !!}
         </div>
+
+         <div class="form-group">
+             {{Form::file('image')}}
+         </div>
 
         <div class="form-group">
             {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}

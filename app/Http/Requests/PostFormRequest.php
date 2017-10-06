@@ -30,6 +30,7 @@ class PostFormRequest extends FormRequest
         return [
             'title' => 'required',
             'fullDescription' => 'required',
+            'image' => 'nullable | image | mimes:jpeg,jpg,png',
         ];
     }
 }
