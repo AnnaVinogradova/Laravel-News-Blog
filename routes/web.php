@@ -13,12 +13,12 @@
 
 Route::get('/', 'PostController@index')->name('posts.index');
 Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
-Route::post('/post/store', 'PostController@store')->name('posts.store');
-Route::get('/create', 'PostController@create')->name('posts.create');
-Route::post('/post/update/{id}', 'PostController@update')->name('posts.update');
-Route::get('/edit/{id}', 'PostController@edit')->name('posts.edit');
-Route::delete('/post/destroy/{id}', 'PostController@destroy')->name('posts.destroy');
-Route::get('/delete/{id}', 'PostController@delete')->name('posts.delete');
+Route::post('/post/store', 'PostController@store')->name('posts.store')->middleware('auth');
+Route::get('/create', 'PostController@create')->name('posts.create')->middleware('auth');
+Route::post('/post/update/{id}', 'PostController@update')->name('posts.update')->middleware('auth');
+Route::get('/edit/{id}', 'PostController@edit')->name('posts.edit')->middleware('auth');
+Route::delete('/post/destroy/{id}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
+Route::get('/delete/{id}', 'PostController@delete')->name('posts.delete')->middleware('auth');
 
 Auth::routes();
 

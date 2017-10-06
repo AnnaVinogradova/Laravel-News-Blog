@@ -46,6 +46,10 @@ class PostService
         return $name;
     }
 
+    /**
+     * @param $fullDescription
+     * @return string
+     */
     public function makeBriefDescription($fullDescription)
     {
         $start = strpos($fullDescription, '<p>');

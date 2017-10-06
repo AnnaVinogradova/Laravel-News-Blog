@@ -19,7 +19,7 @@
             </div>
         @endif
 
-        {!! Form::model($post, array('route' => ['posts.update', $post->id], 'class' => 'form')) !!}
+        {!! Form::model($post, array('route' => ['posts.update', $post->id], 'class' => 'form', 'enctype' => 'multipart/form-data')) !!}
 
         <div class="form-group">
             {!! Form::label('Post title') !!}
@@ -43,6 +43,15 @@
                     'required',
                     'class'=>'form-control'
                 ]) !!}
+        </div>
+
+        <div class="form-group download-file">
+            {{Form::file('image')}}
+            @if(!empty($post->image))
+                <div class="img-preview">
+                    <img src="{{ asset( \App\Http\Services\PostService::IMAGES_PATH . '/' . $post->image) }}" alt="">
+                </div>
+            @endif
         </div>
 
         <div class="form-group">

@@ -80,3 +80,15 @@ p.page-title {
 .delete-form form {
     display: inline;
 }
+
+.img-preview {
+    display: inline-block;
+}
+
+.download-file input {
+    display: inline;
+}
+
+.img-preview img {
+    max-width: 50px;
+}

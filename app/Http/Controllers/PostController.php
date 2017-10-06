@@ -52,48 +52,80 @@ class PostController extends Controller
 
     /**
      * @param PostFormRequest $request
-     * @return mixed
+     * @return \Redirect
      */
     public function store(PostFormRequest $request)
     {
-        $post = new Post();
-        $this->postService->fillPost($post, $request);
-        $post->user()->associate(Auth::user());
+        try {
+            $post = new Post();
+            $this->postService->fillPost($post, $request);
+            $post->user()->associate(Auth::user());
 
-        $post->save();
+            $post->save();
+        } catch (\Exception $e) {
+            return \Redirect::route('home')
+                ->with('message', 'Error:' . $e->getMessage());
+        }
 
         return \Redirect::route('home')
             ->with('message', 'Post was successfully saved!');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $post = Post::findOrFail($id);
         return view('posts.edit', ['post' => $post]);
     }
 
+    /**
+     * @param $id
+     * @param PostFormRequest $request
+     * @return \Redirect
+     */
     public function update($id, PostFormRequest $request)
     {
         $post = Post::findOrFail($id);
-        $this->postService->fillPost($post, $request);
+        try {
+            $this->postService->fillPost($post, $request);
 
-        $post->save();
+            $post->save();
+        } catch (\Exception $e) {
+            return \Redirect::route('home')
+                ->with('message', 'Error:' . $e->getMessage());
+        }
 
         return \Redirect::route('home')
             ->with('message', 'Post was successfully updated!');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function delete($id)
     {
         $post = Post::findOrFail($id);
         return view('posts.delete', ['post' => $post]);
     }
 
+    /**
+     * @param $id
+     * @return \Redirect
+     */
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
 
-        $post->delete();
+        try {
+            $post->delete();
+        } catch (\Exception $e) {
+            return \Redirect::route('home')
+                ->with('message', 'Error:' . $e->getMessage());
+        }
 
         return \Redirect::route('home')
             ->with('message', 'Post was successfully updated!');
