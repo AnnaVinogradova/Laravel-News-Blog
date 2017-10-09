@@ -36,10 +36,10 @@ class PostController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(int $id)
     {
         $post = Post::findOrFail($id);
         return view('posts.show', ['post' => $post]);
@@ -72,21 +72,21 @@ class PostController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $post = Post::findOrFail($id);
         return view('posts.edit', ['post' => $post]);
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @param PostFormRequest $request
      * @return \Redirect
      */
-    public function update($id, PostFormRequest $request)
+    public function update(int $id, PostFormRequest $request)
     {
         $post = Post::findOrFail($id);
         try {
@@ -103,20 +103,20 @@ class PostController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         $post = Post::findOrFail($id);
         return view('posts.delete', ['post' => $post]);
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Redirect
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $post = Post::findOrFail($id);
 
@@ -128,6 +128,6 @@ class PostController extends Controller
         }
 
         return \Redirect::route('home')
-            ->with('message', 'Post was successfully updated!');
+            ->with('message', 'Post was successfully deleted!');
     }
 }

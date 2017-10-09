@@ -24,33 +24,45 @@ class PostService
         $post->title = $request->title;
         $post->fullDescription = $request->fullDescription;
         $post->description = trim($request->description) ?: $this->makeBriefDescription($request->fullDescription);
-        $post->image = '';
+        $oldImageName = $post->image ?: null;
 
         if ($request->hasFile('image')) {
-            $name = $this->saveImage($request->file('image'));
+            $name = $this->saveImage($request->file('image'), $oldImageName);
             $post->image = $name;
+        } elseif ($oldImageName === null) {
+            $post->image = '';
         }
+
         return $post;
     }
 
     /**
      * @param UploadedFile $file
-     * @return string
+     * @param string|null $oldImage
+     * @return null|string
      */
-    private function saveImage(UploadedFile $file)
+    private function saveImage(UploadedFile $file, string $oldImage = null)
     {
-        $name = (Auth::user())->name . time() . '.' . $file->getClientOriginalExtension();
-        $destinationPath = public_path(self::IMAGES_PATH);
-        $file->move($destinationPath, $name);
+        try {
+            $name = (Auth::user())->name . time() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path(self::IMAGES_PATH);
+            $file->move($destinationPath, $name);
+
+            if ($oldImage !== null) {
+                \File::delete(public_path(self::IMAGES_PATH), $oldImage);
+            }
+        } catch (\Exception $e) {
+            return null;
+        }
 
         return $name;
     }
 
     /**
-     * @param $fullDescription
+     * @param string $fullDescription
      * @return string
      */
-    public function makeBriefDescription($fullDescription)
+    public function makeBriefDescription(string $fullDescription)
     {
         $start = strpos($fullDescription, '<p>');
         $end = strpos($fullDescription, '</p>', $start);

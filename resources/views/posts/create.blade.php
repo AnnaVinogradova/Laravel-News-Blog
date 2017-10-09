@@ -31,14 +31,14 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('Brief description') !!}
+            {!! Form::label('Brief description (text)') !!}
             {!! Form::textarea('description', null, [
                     'class'=>'form-control'
                 ]) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('Full description') !!}
+            {!! Form::label('Full description (basic HTML)') !!}
             {!! Form::textarea('fullDescription', null, [
                     'required',
                     'class'=>'form-control'
